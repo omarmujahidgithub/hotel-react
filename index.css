@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.header-shadow {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure images scale correctly */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Style override for the button hover state (if needed) */
+.button-hover:hover {
+  background-color: #f3f4f6; /* Tailwind's gray-200 */
+}
