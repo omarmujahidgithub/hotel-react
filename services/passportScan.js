@@ -11,6 +11,6 @@ export const passportScan = async (file) => {
 //       "Content-Type": "multipart/form-data",
 //     },
 //   });
-  return {"name" : "Omar Mujahid" , "passportNumber" : "123"}
+  return {"name" : "SAIF ABDUL RAHMAN OBAID MOHAMM ALKAABI" , "passportNumber" : "123"}
 //   return response.data; 
 };

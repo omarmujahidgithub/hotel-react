@@ -1,24 +1,19 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { passportScan } from "../services/passportScan";
-import { useLocation } from "react-router-dom";
+import ScrollToTop from "../components/ScrollToTop";
 
-const PassportUpload = () => {
-  const location = useLocation();
+const PassportUpload = ({setScannedPassport, nextHandler}) => {
 
   const [passportFile, setPassportFile] = useState(null);
-  const [userInfo, setUserInfo] = useState(null);
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [userInfo, setUserInfo] = useState();
 
-  const navigate = useNavigate();
-
-  const number = location.state || {}; 
 
   const handleFileChange = (e) => {
     setPassportFile(e.target.files[0]);
     setErrorMessage("");
-    setUserInfo(null);
   };
 
   const handleUpload = async () => {
@@ -32,7 +27,8 @@ const PassportUpload = () => {
 
     try {
       const response = await passportScan(passportFile);
-      setUserInfo(response);
+      setScannedPassport(response)
+      setUserInfo(response)
     } catch (error) {
         print(error)
       setErrorMessage("Failed to process the passport. Please try again. \n ");
@@ -42,11 +38,12 @@ const PassportUpload = () => {
   };
 
   const handleConfirm = () => {
-    navigate("/reservation-details", { state: number });
+    nextHandler()
   };
 
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col justify-center items-center px-4">
+      <ScrollToTop />
       <h1 className="text-4xl font-bold text-gray-800 mb-6 text-center">
         Verify Your Identity
       </h1>
